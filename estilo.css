@@ -1,0 +1,120 @@
+* {
+    color: red; /* mejor en hexadecimal para ser exactos */
+}
+
+[rancio="sii"] {
+    color:blue;
+}
+
+h2 p {
+    color: green;
+}
+
+.titulo-h2 p {
+    color: coral;
+}
+
+.titulo-h2 p span {
+    color: blueviolet;
+}
+
+#miH2 b:hover {
+    color:aqua;
+}
+
+
+.contact-form {
+    color: black;
+}
+
+.contact-form__input {
+    color: yellow;
+}
+
+.contact-form__input:first-child {
+    color: red;
+}
+
+/*
+SELECTORES
+
+    Universal: * 
+    De Tipo: cualquier sección html
+        ej. h1, h2, input
+    Clases: .nombreClase
+    Identificador: #nombreIdentificador   tiene mas rango de especificidad que la clase => prioridad
+    Atributo: [atributo="valor"]
+    Descencientes: padre hijo 
+        ej. h2 p {...}
+        ej. .clase input {...}
+        ej. #identificador label {...}
+    pseudo-clases: por ejemplo los eventos de una clase
+        ej: .clase:hover   siendo hover la pseudoclase
+
+
+ESPECIFICIDAD
+
+    Conflictos entre estilos aplicados al mismo objeto
+
+    Siempre tiene persistencia el último estilo aplicado, el resto se aplica pero es sobreescrito, de ahí el nombre estilos en cascada, pero solo para elementos de la misma jerarquía,
+    para elementos de la misma jerarquía, cuando son diferentes jerarquías se sigue la prioridad:
+    
+        !important   (indicamos a continuación del estilo, no es recomendable usarlo, caso extremo)
+        Estilos en línea    (cuando indicamos dentro del html con style="" el estilo)
+        Identificadores
+        Clases, pseudo-clases y atributos
+        elementos
+        pseudo-elementos
+
+
+METODOLOGIA BEM
+
+    Nos basamos en el nombre de la clase para saber que elemento estamos seleccionando.
+
+    A cada elemento si le aplicamos clase la ponemos con la nomenclatura::after
+        class="nombreClaseContenedorOPadre__nombreClaseElemento"
+
+    Ej. <div class="form">
+            <input type="text" class="form__input">
+            <input type="password" class="form__input">
+        </div>
+    
+    Para los hijos de los hijos ya no se pone __  sino un simple -
+
+    Ej. <div class="form">
+            <input type="text" class="form__input">
+            <input type="password" class="form__input">
+            <p class="form__p"><h2 class="form__p-h2"></h2></p>
+        </div>
+
+        .form__p-h2 {
+            color: red;            
+        }
+
+
+    Para cambiar al primero de los hijos input del contenedor contact-form::after
+ 
+        .contact-form__input:first-child {
+            color: red;            
+        }
+    
+    Uso de --
+    Otra forma es tener uno marcado con --marca:
+
+    Ej. <div class="form">
+            <input type="text" class="form__input">
+            <input type="password" class="form__input--active">
+        </div>
+    
+        .contact-form__input--active {
+            color: red;            
+        }        
+
+
+TEORIA DE LAS MEDIDAS (relativas o fijas)
+
+        
+
+
+
+*/
