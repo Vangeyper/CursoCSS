@@ -112,9 +112,138 @@ METODOLOGIA BEM
 
 
 TEORIA DE LAS MEDIDAS (relativas o fijas)
+     
+        Entre las medidas fijas tenemos:  
+            pixeles 5px
+            centimetros 5cm
+            milimetros 5mm
+            puntos 5pt
 
-        
+        Entre las medidas relativas tenemos:
+            rem: tiene como referencia el root  
+            em:  por defecto equivale a 16px aunque depende del navegador
+                 La gracia del em es que su valor se hereda del contenedor, si en el contenedor tenemos un font-size de 20px cuando a un elemento hijo le aplicamos 
+                 medidas em tendrá dicho valor como valor por defecto. Esto se aplica a todo lo que requiera medidas: font-size, padding, ...
+            vw:  viewport width -> equivale al ancho de pantalla, se le indica un % de la misma. Ej. width: 100vw;   indica toda la pantalla
+                 50vw sería el 50% de la pantalla
+            vh:  viewport height -> equivale al alto de pantalla, se le indica un % de la misma. Ej. height: 100vh;   indica toda la pantalla
+                 50vh sería el 50% de la pantalla
+            %:   Indica un porcentaje de la caja que la contiene.
 
+
+
+PROPIEDADES DE TEXTOS
+
+    font-size: tamaño de la fuente aplicada
+    font-family: familia de la fuente utilizada
+    line-height: es el espacio ocupado por 1 letra. La particularidad es que nace del centro de la letra, si aplicamos line-height: 2; crecería media letra por encima 
+                 y por debajo de la letra, es decir que al partir del centro crece por ambas partes por igual. No amplia la letra, sino que lo que amplia es el espacio ocupado, en el fondo 
+                 haría como los margin - padding 
+    font-weight: especifica el grosor aplicado a la fuente, si lo permite
+
+
+
+NORMALIZE.css
+
+    Se puede descargar y utilizar para recuperar los valores por defecto de estilos que deberían tener los navegadores:
+        <link rel="stylesheet" type="text/css" href="normalize.css">
+     
+    Añadimos en las imágenes una línea para que las misma ocupen todo el ancho, esto es importante para los móviles:  max-width: 100%;
+
+    img {
+        border-style: none;
+        max-width: 100%;
+    }
+
+    también añadimos para todos los elementos esto: 
+
+    * {
+        box-sizing: border-box;
+        padding: 0;      con los 0 no hace falta indicar la unidad, porque se multiplica por cero
+        margin: 0;
+    }
+
+    mantiene siempre la caja contenedora con las medidas establecidas aunque los elementos interiores quieran hacerla crecer.
+
+
+
+TEORIA DE CAJAS
+
+    Hay 2 tipos:
+
+        las que son en linea:
+            El ancho será el necesario para tener el contenido que le pongamos
+            No se puede aplicar height o width, siempre ocupa lo que necesita
+        las que son en bloque:
+            Son las más grandes
+            Se ajustan al ancho de la contenedora
+
+    Para cambiar la disposición de uno a otro tenemos la propiedad display: inline;   display: block;
+
+    
+
+
+PROPIEDADES DE CAJAS
+
+    background-color
+    display: inline-block   --> permite que se comporte como un elemento en línea pero podrá adoptar las propiedades de un bloque.
+        PADDING es la distancia entre los textos y los bordes de la caja contenedora.
+    padding: 20px;    --> es como darle padding a todo: top, right, bottom y left
+    padding: 10px 20px --> le da 10px al top y al bottom, mientras que le da 20px al right y al left
+    padding: 30px 40px 50px 20px;   --> damos todos los paddings siendo por orden: top 30px, right 40px bottom 50px y left 20px  --> sigue el movimiento de las agujas del rejoj
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    height: 10px; 
+    width: 10px;
+    box-sizing: content-box;  --> si no ponemos esto los tamaños son la suma de las propiedades, por ejemplo en este caso el height sería de 10px + 20px del padding-top + 20px del padding-bottom
+                              --> pero al ponerlo la caja mantiene su tamaño y no crece o disminuye.
+        MARGIN es la distancia entre 2 cajas consecutivas, al igual que el padding tiene 4 lados y se puede poner de las mismas formas.                              
+        Ojo se aplica en todos los lados de las cajas contenedoras, y en el medio habría doble distancia porque aplicaría el margin o padding de ambas cajas contenedoras. Por eso en el medio se reducen 
+        los valores de padding y margin a la mitad:  left y right
+    margin: 20px; 
+    margin: 10px 20px --> le da 10px al top y al bottom, mientras que le da 20px al right y al left
+    margin: 30px 40px 50px 20px;   --> damos todos los margins siendo por orden: top 30px, right 40px bottom 50px y left 20px  --> sigue el movimiento de las agujas del rejoj
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;   --> indica el redondeado de las esquinas de las cajas contenedoras
+    border-radius: 50%;   --> redondea toda la caja creando una circunferencia
+    border: 4px solid blue  --> se indica el grueso del borde, el estilo y el color
+    
+    box-shadow: 2px 4px 15px 1px color;   --> es para dar sombra a la caja, siendo por orden los datos: desplazamiento para el lado, desplazamiento para abajo, difuminado, relleno y color 
+    text-shadow: 2px 4px 15px color;  --> es para dar sombra al texto, siendo por orden los datos: desplazamiento para el lado, desplazamiento para abajo, difuminado y color 
+        En ambos sombreados si queremos darle más intensidad basta con copiarlo y repetirlo separado por comas
+    box-shadow: 2px 4px 15px 1px color, 2px 4px 15px 1px color;
+    text-shadow: 2px 4px 15px color, 2px 4px 15px color; 
+
+    transform: rotate(90deg);  es una función que se le pasa los grados como parámetros. Puede ser negativo para el efecto contrario de rotación.
+
+
+NOTA DE HTML
+
+Si pones 2 elementos en líneas diferentes automaticamente aunque el margin sea 0 deja un espacio entre las cajas contenedoras, 
+
+    ej.
+        <h2>Primera Caja</h2>
+        <h2>Segunda Caja</h2>
+
+En cambio si las ponemos en la misma línea no dejará espacio::after
+
+    ej.
+        <h2>Primera Caja</h2><h2>Segunda Caja</h2>
 
 
 */
+
+.contact-form {
+    font-size: 16px;
+}
+
+.contact-form__h2 {
+    font-size: 2em;
+    line-height: sans-serif, Georgia;  /* al separar por comas se coge la primera que exista por la izquierda */
+    font-weight: 1000;  
+}
