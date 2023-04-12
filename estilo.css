@@ -202,6 +202,8 @@ PROPIEDADES DE CAJAS
         MARGIN es la distancia entre 2 cajas consecutivas, al igual que el padding tiene 4 lados y se puede poner de las mismas formas.                              
         Ojo se aplica en todos los lados de las cajas contenedoras, y en el medio habría doble distancia porque aplicaría el margin o padding de ambas cajas contenedoras. Por eso en el medio se reducen 
         los valores de padding y margin a la mitad:  left y right
+        Si ponemos margin: auto; a una caja de tipo block y no está posicionado lo que hacemos es centrarla en pantalla.
+        Este centrado solo vale para el eje horizontal, no pasa con el eje de las Y
     margin: 20px; 
     margin: 10px 20px --> le da 10px al top y al bottom, mientras que le da 20px al right y al left
     margin: 30px 40px 50px 20px;   --> damos todos los margins siendo por orden: top 30px, right 40px bottom 50px y left 20px  --> sigue el movimiento de las agujas del rejoj
@@ -222,19 +224,58 @@ PROPIEDADES DE CAJAS
     transform: rotate(90deg);  es una función que se le pasa los grados como parámetros. Puede ser negativo para el efecto contrario de rotación.
 
 
+OUTLINE:
+    Es como un border pero no afecta al DOM, realmente no está dentro del DOM como lo estaría border. Es como un resaltado que no afecta a las posiciones de 
+    los elementos, ni siquiera a la caja que lo utiliza.
+    Aunque tengamos el box-sizing en cualquiera de sus opciones no reducirá ni hará grande la caja afectada, solo la remarcará sin mover el resto de elementos.
+    El Outline tiene en cuenta el Z-Index de los elementos a la hora de pintar, por lo que pueden quedar ocultos algunos de los lados del resaltado si las cajas colindantes son más cercanas a la superficie.
+
+
+POSITION:
+    Permite posicionar un elemento. Este elemento adquiere nuevas propiedades como: top, right, left, bottom, z-index, ...
+    Opciones posibles:
+        Static: valor por defecto. Significa que NO está posicionado.
+        Relative: 
+            El espacio reservado por el elemento originalmente se convervará aunque se traslade a otra ubicación, y el resto de elementos no ocuparán su lugar.
+            El elemento adquiere las propiedades top, left, right y bottom que se corresponden en sus origenes con los de la caja.
+            Importante: si indicamos top o left tendrán prioridad sobre la propiedad bottom y right, ignorando estas últimas.            
+        Absolute:
+            El espacio reservado para el elemento deja de estarlo y pasa a ser ocupado por el próximo elemento.
+            Las coordenadas de posicionamiento serán referidas al contenedor o al viewport si no tiene. Ya no serán referidas al origen de la caja como en el relative.
+            El viewport es todo lo que podemos ver en pantalla, si apretamos F11 lo vemos.
+            El ancho de los elementos con position: absolute; aunque sea una caja de tipo block pasará a ajustarse al contenido, si la queremos más grande habrá que indicarlo con medidas.
+            El elemento contenedor debe estar posicionado, no vale como static. Si es static entonces los elementos contenidos tomarán como referencia al viewport para posicionarse como absolute.
+        Fixed:
+            Es igual en todo que el absolute, pero además tiene la particularidad que no se mueve nunca de la zona de pantalla aunque se realice scroll en la pantalla.
+        Sticky:
+
+
+Z-INDEX: 
+    Orden de los elementos visualmente en el eje Z. Dicho de otra manera el que tenga el valor z-index más alto estará más cercano a nuestra vista y se verá por delante del resto de elementos con menor z-index.
+    Esta propiedad se adquiere cuando la caja está posicionada, en el caso de position: static no existe o no tiene efecto.
+    Tener en cuenta que por el hecho de estar posicionados aparecerán antes que otros elementos los últimos en pintarse, por efecto del orden de flujo al pintarse.
+    Por defecto si no está posicionada tiene valor 0.
+    En ese caso se tiene en cuenta el orden en que se pinta.
+    Para poder agregar elementos nuevos y ordenarlos visualmente se recomienda poner incrementos de 50 o 100 en cada nuevo elemento z-index, asi podemos añadir elementos nuevos en medio.
+    En el caso de contenedores padres e hijos, para que un hijo sea superado por el padre visualmente tenemos que ponerle un z-index: -1; al hijo y tener a ambos posicionados. En el padre no podemos tener ningún z-index definido para que funcione.
+
+
 NOTA DE HTML
 
-Si pones 2 elementos en líneas diferentes automaticamente aunque el margin sea 0 deja un espacio entre las cajas contenedoras, 
+    Si pones 2 elementos en líneas diferentes automaticamente aunque el margin sea 0 deja un espacio entre las cajas contenedoras, 
 
-    ej.
-        <h2>Primera Caja</h2>
-        <h2>Segunda Caja</h2>
+        ej.
+            <h2>Primera Caja</h2>
+            <h2>Segunda Caja</h2>
 
-En cambio si las ponemos en la misma línea no dejará espacio::after
+    En cambio si las ponemos en la misma línea no dejará espacio::after
 
-    ej.
-        <h2>Primera Caja</h2><h2>Segunda Caja</h2>
+        ej.
+            <h2>Primera Caja</h2><h2>Segunda Caja</h2>
 
+    Opacity: indica la transparencia de un elemento, siendo 1 totalmente opaco y 0 totalmente transparente.
+        ej.
+            opacity: .5;  la mitad de transparencia
 
 */
 
@@ -246,4 +287,123 @@ En cambio si las ponemos en la misma línea no dejará espacio::after
     font-size: 2em;
     line-height: sans-serif, Georgia;  /* al separar por comas se coge la primera que exista por la izquierda */
     font-weight: 1000;  
+}
+
+.cajaConOutline, .cajaSinOutline {
+    width: 200px;
+    height: 200px;
+    background: red;
+    margin: auto;    
+    box-sizing: content-box; /* las medidas indicadas a la caja se cumplirán para el interior de la misma y a eso habrá que añadir lo que ocupe el borde por ambos lados */
+}
+
+.cajaSinOutline {
+    border: 10px solid blue;    
+}
+
+.cajaConOutline {
+    background: yellow;
+    outline: 10px solid blue; /* no ocupa espacio en pantalla */    
+}
+
+div {
+    width: 120px;
+    height: 120px;
+    display: block;
+}
+
+.caja1 {
+    background: orange;    
+}
+
+.caja2 {
+    background: green; 
+    position: relative;   
+    top: 50px;
+    left: 50px;
+    z-index: 1;
+}
+
+.caja3 {
+    background: lightblue;  
+    position: relative;
+}
+
+.caja4 {
+    background: yellow;   
+}
+
+
+.contenedor {
+    width: 300px;
+    height: 300px;
+    background: blue;
+    margin: 40px;
+    position: relative;
+}
+
+.hijo {
+    width: 120px;
+    height: 120px;
+    background: orange;
+    position: relative;
+    top: -20px;    
+    left: -20px;
+    z-index: -1; /* única forma de posicionar al padre por delante del hijo */
+}
+
+
+div {
+    display: block;
+    background: green;
+    position: absolute;
+}
+
+div div {
+    height: 75px;
+    width: 75px;
+    background: yellow;
+}
+
+.contenedor2 {
+    width: 450px;
+    height: 450px;
+    border: 4px solid red;
+    margin: 50px auto;
+    position: relative; /* si este elemento contenedor no lo posicionamos y lo dejamos como static el resto de cajas no lo cojeran como referencia sino que pillarán el viewport */
+}
+
+.caja11 {
+    background: orange;
+    position: absolute;    
+}
+
+.caja12 {
+    background: greenyellow; 
+    position: absolute;    
+    right: 0;
+    top:0;
+}
+
+.caja13 {
+    background: lightblue;
+    position: absolute;  
+    bottom: 0;  
+    left: 0;
+}
+
+.caja14 {
+    background: burlywood; 
+    position: absolute;  
+    bottom: 0;
+    right: 0;
+}
+
+.caja15 {
+    /* procedemos a centrar esta caja en su contenedor */
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
 }
