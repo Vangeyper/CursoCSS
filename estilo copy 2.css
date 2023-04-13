@@ -272,78 +272,6 @@ OVERFLOW:
 
 FLOAT:
     Opciones: right, left, none, inherit
-    En este ejemplo de estilos podemos ver como el texto envuelve a la imagen mediante el uso de float: right; o float: left;
-
-
-PSEUDO-ELEMENTOS:
-    Algunos pseudo-elementos no forman parte del DOM, pero podemos ver cambios visuales como el outline. Los pseudo-elementos que requieren de la etiqueta content no forman parte del DOM.
-    Se aplican a un elemento existente.
-    La sintaxis en el selector es:  nombreDelElemento::pseudoElemento
-        ej.
-            .texto::first-line { ... }
-
-    ::first-line -> 
-        Si que forma parte del DOM.
-        No funciona en elementos inline puro, si en inline-block
-        los estilos aplicados a la primera linea serán independientes del ancho de la pantalla, solo afectará a la primera línea formada en cada viewport
-    ::first-letter ->
-        Si que forma parte del DOM.
-        Mismo funcionamiento que para first-line pero afectando solo a la primera letra  
-    ::placeholder ->
-        Texto que aparece en el input. Por defecto tiene unas propiedades: color grisáceo, ...
-        Podemos cambiar estas propiedades haciendo referencia al pseudo-elemento placeholder
-    ::after  
-        No forma parte del DOM.
-        Necesita de la propiedad content.
-        Se refiere a los hijos del content
-        Añade contenido después del elemento afectado por el pseudo-elemento. No admite etiquetas en el texto
-        IMPORTANTE: este elemento al no formar parte del DOM no podemos inspeccionarlo ni seleccionarlo en pantalla
-    ::before  
-        No forma parte del DOM.
-        Necesita de la propiedad content.
-        Se refiere a los hijos del content
-        Añade contenido antes del elemento afectado por el pseudo-elemento. No admite etiquetas en el texto
-        IMPORTANTE: este elemento al no formar parte del DOM no podemos inspeccionarlo ni seleccionarlo en pantalla
-    ::selection ->
-        Permite modificar el estilo de los textos seleccionados
-
-
-PSEUDO-CLASES:
-    Son o permiten escuchar eventos sobre los elementos seleccionados.
-    Opciones:
-
-    :hover -> 
-        cuando el ratón pasa por encima del elemento
-    :link ->
-        cambiar un link aplicando un estilo, solo si no hemos visitado dicho link. Sería cambiar el estilo de los NO VISITADOS
-    :visited ->
-        cambiar un link aplicando un estilo, solo si hemos visitado dicho link. Sería cambiar el estilo de los YA VISITADOS
-    NOTA: el link y el visited se aplican a elementos de tipo <a> y tienen prioridad sobre los propios elementos <a> salvo que indiquemos el !important a la propiedad
-    :active ->
-        se aplicará el estilo al elemento al que afecta cuando le demos un click a dicho elemento haciendolo activo en ese momento, Una vez soltemos el click dejará de estar activo y volverá a su estilo normal
-        podemos darle una transición con el transition del elemento afectado
-    :focus ->
-        estilo cuando el elemento tiene el foco de la app
-        por ejemplo si es un input podemos escribir en él y hasta que hagamos un lostfocus se aplicará el estilo
-    :lang() ->
-        se aplica el estilo a todos los elementos que estén marcados con el atributo lang="idioma"
-        ej. en el elemento 
-            <b lang="es">¿hola como estás?</b>
-        en el style
-            b:lang(es) {
-                padding: 20px;
-            }    
-
-
-TRANSITION:
-    Establece el tiempo que ha de pasar desde el punto original hasta el final de un evento o cambio.
-    ej. 
-        transition: background 1s, height 1s, width .2s;
-    Se puede indicar el evento o atributo afectado de forma explícita como en el ejemplo
-    Si queremos que todos los atributos se cambien en el mismo tiempo:
-    ej.
-        transition: all 1s;
-
 
 
 
@@ -364,18 +292,6 @@ NOTA DE HTML
         ej.
             opacity: .5;  la mitad de transparencia
 
-    Tipos de Input: <input type="text" />
-        text   -> texto normal
-        password -> texto protegido para contraseñas
-        range  -> permite introducir un rango
-        color  -> permite introducir un color
-
-
-NOTAS DE WINDOWS
-
-    Tecla de windows + flecha izquierda o flecha derecha: permite trabajar con la app activa en media pantalla
-
-
 */
 
 
@@ -385,48 +301,35 @@ NOTAS DE WINDOWS
     font-size: 30px;
 }
 
-.texto {
-    padding: 20px;
+.contenedor {
+
 }
 
-.texto::first-line {
-    color: blue;
+.contenedor div {
+    display: inline-block;
+    width: 50%;    
+    float: left;
 }
 
-input::placeholder {
-    color: red;
+.primario {
+    background: red;    
 }
 
-input::selection {
-    color: yellow;
-    background-color: blueviolet;
+.secundario {
+    background: yellow;
 }
 
-b {
-    padding: 6px;
-    width: 100%;
+
+/*
+
+div {
+    margin: auto;
+    margin-top: 50px;
+    width: 320px;
+    height: 350px;
+    border: 4px solid red;
+    background: grey;
+    overflow: auto;
 }
 
-b::before {
-    content: "me suscribí ";
-    color: red;
-}
-
-b::after {
-    content: " todo tendencias!";
-    color: blue;
-}
-
-/* pseudo-clases */
-.caja1 {
-    height: 200px;
-    width: 200px;
-    background: slateblue;
-    transition: background 1s, height 1s, width .2s;
-}
-
-.caja1:hover {
-    background: darkslateblue;
-    height: 300px;
-    width: 300px;
-}
+*/

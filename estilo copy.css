@@ -1,3 +1,39 @@
+* {
+    color: red; /* mejor en hexadecimal para ser exactos */
+}
+
+[rancio="sii"] {
+    color:blue;
+}
+
+h2 p {
+    color: green;
+}
+
+.titulo-h2 p {
+    color: coral;
+}
+
+.titulo-h2 p span {
+    color: blueviolet;
+}
+
+#miH2 b:hover {
+    color:aqua;
+}
+
+
+.contact-form {
+    color: black;
+}
+
+.contact-form__input {
+    color: yellow;
+}
+
+.contact-form__input:first-child {
+    color: red;
+}
 
 /*
 SELECTORES
@@ -259,91 +295,6 @@ PROPIEDAD DISPLAY:
 
 
 OVERFLOW:
-    Indica qué hacemos con el contenido que desborda el contenedor. 
-    Opciones:
-        visible: es la que tenemos por defecto. Simplemente se pinta fuera de la caja contenedora
-        auto: si sobresale aplica scroll
-        scroll: sobresalga o no nos pone las barritas de scroll
-        hidden: permite ocultar lo que sobresale y también quita el scroll forzado en el otro eje que hace que por defecto aparezca en este
-            ej. overflow-x: scroll;
-                overflow-y: hidden;
-    Esta propiedad es un ShortHand: podemos referirnos al eje X y al eje Y con overflow-x y overflow-y
-
-
-FLOAT:
-    Opciones: right, left, none, inherit
-    En este ejemplo de estilos podemos ver como el texto envuelve a la imagen mediante el uso de float: right; o float: left;
-
-
-PSEUDO-ELEMENTOS:
-    Algunos pseudo-elementos no forman parte del DOM, pero podemos ver cambios visuales como el outline. Los pseudo-elementos que requieren de la etiqueta content no forman parte del DOM.
-    Se aplican a un elemento existente.
-    La sintaxis en el selector es:  nombreDelElemento::pseudoElemento
-        ej.
-            .texto::first-line { ... }
-
-    ::first-line -> 
-        Si que forma parte del DOM.
-        No funciona en elementos inline puro, si en inline-block
-        los estilos aplicados a la primera linea serán independientes del ancho de la pantalla, solo afectará a la primera línea formada en cada viewport
-    ::first-letter ->
-        Si que forma parte del DOM.
-        Mismo funcionamiento que para first-line pero afectando solo a la primera letra  
-    ::placeholder ->
-        Texto que aparece en el input. Por defecto tiene unas propiedades: color grisáceo, ...
-        Podemos cambiar estas propiedades haciendo referencia al pseudo-elemento placeholder
-    ::after  
-        No forma parte del DOM.
-        Necesita de la propiedad content.
-        Se refiere a los hijos del content
-        Añade contenido después del elemento afectado por el pseudo-elemento. No admite etiquetas en el texto
-        IMPORTANTE: este elemento al no formar parte del DOM no podemos inspeccionarlo ni seleccionarlo en pantalla
-    ::before  
-        No forma parte del DOM.
-        Necesita de la propiedad content.
-        Se refiere a los hijos del content
-        Añade contenido antes del elemento afectado por el pseudo-elemento. No admite etiquetas en el texto
-        IMPORTANTE: este elemento al no formar parte del DOM no podemos inspeccionarlo ni seleccionarlo en pantalla
-    ::selection ->
-        Permite modificar el estilo de los textos seleccionados
-
-
-PSEUDO-CLASES:
-    Son o permiten escuchar eventos sobre los elementos seleccionados.
-    Opciones:
-
-    :hover -> 
-        cuando el ratón pasa por encima del elemento
-    :link ->
-        cambiar un link aplicando un estilo, solo si no hemos visitado dicho link. Sería cambiar el estilo de los NO VISITADOS
-    :visited ->
-        cambiar un link aplicando un estilo, solo si hemos visitado dicho link. Sería cambiar el estilo de los YA VISITADOS
-    NOTA: el link y el visited se aplican a elementos de tipo <a> y tienen prioridad sobre los propios elementos <a> salvo que indiquemos el !important a la propiedad
-    :active ->
-        se aplicará el estilo al elemento al que afecta cuando le demos un click a dicho elemento haciendolo activo en ese momento, Una vez soltemos el click dejará de estar activo y volverá a su estilo normal
-        podemos darle una transición con el transition del elemento afectado
-    :focus ->
-        estilo cuando el elemento tiene el foco de la app
-        por ejemplo si es un input podemos escribir en él y hasta que hagamos un lostfocus se aplicará el estilo
-    :lang() ->
-        se aplica el estilo a todos los elementos que estén marcados con el atributo lang="idioma"
-        ej. en el elemento 
-            <b lang="es">¿hola como estás?</b>
-        en el style
-            b:lang(es) {
-                padding: 20px;
-            }    
-
-
-TRANSITION:
-    Establece el tiempo que ha de pasar desde el punto original hasta el final de un evento o cambio.
-    ej. 
-        transition: background 1s, height 1s, width .2s;
-    Se puede indicar el evento o atributo afectado de forma explícita como en el ejemplo
-    Si queremos que todos los atributos se cambien en el mismo tiempo:
-    ej.
-        transition: all 1s;
-
 
 
 
@@ -364,69 +315,162 @@ NOTA DE HTML
         ej.
             opacity: .5;  la mitad de transparencia
 
-    Tipos de Input: <input type="text" />
-        text   -> texto normal
-        password -> texto protegido para contraseñas
-        range  -> permite introducir un rango
-        color  -> permite introducir un color
-
-
-NOTAS DE WINDOWS
-
-    Tecla de windows + flecha izquierda o flecha derecha: permite trabajar con la app activa en media pantalla
-
-
 */
 
-
-* {
-    font-family: 'Lobster', cursive;
-    font-weight: 100;
-    font-size: 30px;
+.contact-form {
+    font-size: 16px;
 }
 
-.texto {
-    padding: 20px;
+.contact-form__h2 {
+    font-size: 2em;
+    line-height: sans-serif, Georgia;  /* al separar por comas se coge la primera que exista por la izquierda */
+    font-weight: 1000;  
 }
 
-.texto::first-line {
-    color: blue;
-}
-
-input::placeholder {
-    color: red;
-}
-
-input::selection {
-    color: yellow;
-    background-color: blueviolet;
-}
-
-b {
-    padding: 6px;
-    width: 100%;
-}
-
-b::before {
-    content: "me suscribí ";
-    color: red;
-}
-
-b::after {
-    content: " todo tendencias!";
-    color: blue;
-}
-
-/* pseudo-clases */
-.caja1 {
-    height: 200px;
+.cajaConOutline, .cajaSinOutline {
     width: 200px;
-    background: slateblue;
-    transition: background 1s, height 1s, width .2s;
+    height: 200px;
+    background: red;
+    margin: auto;    
+    box-sizing: content-box; /* las medidas indicadas a la caja se cumplirán para el interior de la misma y a eso habrá que añadir lo que ocupe el borde por ambos lados */
 }
 
-.caja1:hover {
-    background: darkslateblue;
-    height: 300px;
-    width: 300px;
+.cajaSinOutline {
+    border: 10px solid blue;    
 }
+
+.cajaConOutline {
+    background: yellow;
+    outline: 10px solid blue; /* no ocupa espacio en pantalla */    
+}
+
+div {
+    width: 120px;
+    height: 120px;
+    display: block;
+}
+
+.caja1 {
+    background: orange;    
+}
+
+.caja2 {
+    background: green; 
+    position: relative;   
+    top: 50px;
+    left: 50px;
+    z-index: 1;
+}
+
+.caja3 {
+    background: lightblue;  
+    position: relative;
+}
+
+.caja4 {
+    background: yellow;   
+}
+
+
+.contenedor {
+    width: 300px;
+    height: 300px;
+    background: blue;
+    margin: 40px;
+    position: relative;
+}
+
+.hijo {
+    width: 120px;
+    height: 120px;
+    background: orange;
+    position: relative;
+    top: -20px;    
+    left: -20px;
+    z-index: -1; /* única forma de posicionar al padre por delante del hijo */
+}
+
+
+div {
+    display: block;
+    background: green;
+    position: absolute;
+}
+
+div div {
+    height: 75px;
+    width: 75px;
+    background: yellow;
+}
+
+.contenedor2 {
+    width: 450px;
+    height: 450px;
+    border: 4px solid red;
+    margin: 50px auto;
+    position: relative; /* si este elemento contenedor no lo posicionamos y lo dejamos como static el resto de cajas no lo cojeran como referencia sino que pillarán el viewport */
+}
+
+.caja11 {
+    background: orange;
+    position: absolute;    
+}
+
+.caja12 {
+    background: greenyellow; 
+    position: absolute;    
+    right: 0;
+    top:0;
+}
+
+.caja13 {
+    background: lightblue;
+    position: absolute;  
+    bottom: 0;  
+    left: 0;
+}
+
+.caja14 {
+    background: burlywood; 
+    position: absolute;  
+    bottom: 0;
+    right: 0;
+}
+
+.caja15 {
+    /* procedemos a centrar esta caja en su contenedor */
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+}
+
+.contenedor3 {
+    background: grey;
+}
+
+/*
+body {
+    padding-top: 100px; /* le damos espacio para poner el fixed encima del body 
+}
+
+
+.cajaFixed {
+    color: white;
+    border: 5px dashed black;
+    background: red;
+    position: fixed;
+    width: 200px;
+}*/
+
+.cajaSticky {
+    color: white;
+    border: 5px dashed black;
+    background: burlywood;
+    position: sticky;
+    width: 200px;
+    top: 200px;
+}
+
+
