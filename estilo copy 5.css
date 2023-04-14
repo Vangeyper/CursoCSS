@@ -336,84 +336,19 @@ PSEUDO-CLASES:
 
 
 OBJECT-FIT:
-    Se aplica a las imágenes:
+    
+    fil ->
     contain ->
-        la imagen se ajusta hasta que una de las dimensiones llega al contenedor, width o height. Quedando el resto del otro eje sin cubrir por la imagen.
     cover ->
-        la imagen se ajusta al contenedor completamente, manteniendo la escala y recortando lo que salga del contenedor
     none ->
-        ningun efecto, mantiene la resolución original en el contenedor
     scale-down ->
-        compara la imagen de contain y de none y se queda con el más pequeño
 
 
 OBJECT-POSITION:
-    permite ubicar la imagen de un determinado lado cortándose por el resto de lados. Esta opción se puede combinar con la de object-fit para conseguir mantener el trozo de imagen que queremos en pantalla cuando no cabe toda la imagen
     Left - Right - Top - Bottom
-
-    también podemos indicarle medidas mediante: px - em - % - etc
-    estas medidas pueden ser negativas para conseguir el efecto en sentido contrario
+    px - em - % - etc
 
 
-CURSOR:
-    permite cambiar el cursor del elemento que estamos modelando en estilo. Podemos hacerlo en pseudo-clases y demás estilos.
-    ej. 
-            cursor: pointer;
-            cursor: row-resize;  esta vale para permitir cambiar la anchura o altura del elemento
-
-    algunos cursores: pointer, copy, progress, 
-    la lista de cursores podemos verla en: https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor
-
-
-COLORES:
-    La lista de colores CSS la podemos ver en https://www.mclibre.org/consultar/htmlcss/css/css-color.html
-    Los colores se pueden indicar de muchas formas:
-        1. Por el nombre 
-        2. En hexadecimal 
-        3. rgb 
-        4. rgba 
-        5. hsl
-        6. hsla
-    
-    ej.
-            Red
-            #FF0000
-            rgb(255 0 0)
-            hsl(0 100% 50%)
-            hwb(0 0% 0%)
-
-    Los colores primarios en informática son RGB: rojo, verde y azul, no como en el arte que serían: rojo, azul y amarillo
-    rgb(r, g, b) donde 
-        r es la cantidad de red de 0 a 255
-        g es la cantidad de green de 0 a 255
-        b es la cantidad de blue de 0 a 255
-    los colores extremos son:
-        rgb(0,0,0) es negro
-        rgb(255,255,255) es blanco
-    la curiosidad es que mezclando rojo y verde sale amarillo, esto no pasaría en la vida real
-    Los grises se hacen con todos los colores en el mismo nivel
-    rgba(r, g, b, a) es lo mismo que rgb, pero podemos indicarle la opacidad del color en el cuarto parámetro
-    al hacer un color mas transparente se verá influenciado por el color que hubiese debajo del mismo.
-    La opacidad son valores del 0 al 1, siendo el 0 el más transparente o el menos opaco.
-    En hexadecimal podemos indicarlo con 3 caracteres o con 6, con más o menos no funcionaría.
-    Si indicamos 4 u 8 valores es para indicar la opacidad como en el rgba. Es decir el último indicador sería la opacidad:
-        #fff -> r(f), g(f), b(f)
-        #ffff -> r(f), g(f), b(f), a(f)
-        #ffffff -> r(ff), g(ff), b(ff)
-        #ffffffff -> r(ff), g(ff), b(ff), a(ff)
-
-
-RESPONSIVE DESIGN - MOBILE FIRST
-    Responsive es adaptar de escritorio a tablet o mobile
-    Mobile first es adaptar desde el mobil a tablet y luego escritorio
-
-    Para esto se usa el mediaquery:
-        sintaxis: @media (max-width: 800px) { ... }
-        este media query lo que hace es que cuando la pantalla alcance dimensiones 800px o menos se aplicarán los estilos indicados entre llaves
-
-    Importante: para que coja las dimensiones reales del dispositivo hay que añadir el meta siguiente en el head de la página:
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
 
 TRANSITION:
     Establece el tiempo que ha de pasar desde el punto original hasta el final de un evento o cambio.
@@ -462,59 +397,51 @@ NOTAS DE WINDOWS
 * {
     font-family: 'Lobster', cursive;
     font-weight: 100;
+    font-size: 30px;
 }
 
-.nav {
-    background-color: darkslateblue;
+.texto {
+    padding: 20px;
 }
 
-.nav__li {
-    display: inline-block;
+.texto::first-line {
+    color: blue;
 }
 
-/* cuando pasamos el cursor por encima del li le damos un nuevo estilo al elemento a que incluya dentro del li */
-.nav__li:hover > a {
-    color: #bbb;
+input::placeholder {
+    color: red;
 }
 
-.nav__li:hover > i {
-    color: #bbb;
+input::selection {
+    color: yellow;
+    background-color: blueviolet;
 }
 
-.nav__responsive-ul {
-    display: none;
-    padding: 25px;
-    color: #fff;
+b {
+    padding: 6px;
+    width: 100%;
 }
 
-.nav__li i {
-    color: #fff;
-    box-sizing: border-box;
-    text-align: right;
-    margin-right: 5px;
+b::before {
+    content: "me suscribí ";
+    color: red;
 }
 
-.nav__li a {
-    color: #fff;
-    text-decoration: none;
+b::after {
+    content: " todo tendencias!";
+    color: blue;
 }
 
-.nav__responsive-button {
-    float: right;
-    font-size: 25px;
-    padding: 6px 25px;
+/* pseudo-clases */
+.caja1 {
+    height: 200px;
+    width: 200px;
+    background: slateblue;
+    transition: background 1s, height 1s, width .2s;
 }
 
-@media(max-width:500px) {
-
-    .nav__ul {
-        display: none;
-    }
-
-    .nav__responsive-ul {
-        display: block;
-        padding: 12px;
-        color: #fff;
-    }
-    
+.caja1:hover {
+    background: darkslateblue;
+    height: 300px;
+    width: 300px;
 }

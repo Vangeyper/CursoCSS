@@ -407,13 +407,10 @@ RESPONSIVE DESIGN - MOBILE FIRST
     Responsive es adaptar de escritorio a tablet o mobile
     Mobile first es adaptar desde el mobil a tablet y luego escritorio
 
-    Para esto se usa el mediaquery:
-        sintaxis: @media (max-width: 800px) { ... }
-        este media query lo que hace es que cuando la pantalla alcance dimensiones 800px o menos se aplicarán los estilos indicados entre llaves
-
-    Importante: para que coja las dimensiones reales del dispositivo hay que añadir el meta siguiente en el head de la página:
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    Para esto se usa el mediaquery
     
+
+
 
 TRANSITION:
     Establece el tiempo que ha de pasar desde el punto original hasta el final de un evento o cambio.
@@ -462,59 +459,18 @@ NOTAS DE WINDOWS
 * {
     font-family: 'Lobster', cursive;
     font-weight: 100;
+    font-size: 30px;
 }
 
-.nav {
-    background-color: darkslateblue;
+.caja {
+    margin: 25px;
+    width: 400px;
+    height: 300px;
 }
 
-.nav__li {
-    display: inline-block;
-}
-
-/* cuando pasamos el cursor por encima del li le damos un nuevo estilo al elemento a que incluya dentro del li */
-.nav__li:hover > a {
-    color: #bbb;
-}
-
-.nav__li:hover > i {
-    color: #bbb;
-}
-
-.nav__responsive-ul {
-    display: none;
-    padding: 25px;
-    color: #fff;
-}
-
-.nav__li i {
-    color: #fff;
-    box-sizing: border-box;
-    text-align: right;
-    margin-right: 5px;
-}
-
-.nav__li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.nav__responsive-button {
-    float: right;
-    font-size: 25px;
-    padding: 6px 25px;
-}
-
-@media(max-width:500px) {
-
-    .nav__ul {
-        display: none;
-    }
-
-    .nav__responsive-ul {
-        display: block;
-        padding: 12px;
-        color: #fff;
-    }
-    
+.caja img {
+    width: 100%;
+    height: 100%;
+    border: 2px solid black;
+    object-fit: scale-down;
 }

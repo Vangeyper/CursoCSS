@@ -408,7 +408,7 @@ RESPONSIVE DESIGN - MOBILE FIRST
     Mobile first es adaptar desde el mobil a tablet y luego escritorio
 
     Para esto se usa el mediaquery:
-        sintaxis: @media (max-width: 800px) { ... }
+        sintaxis: @media only screen and(max-width: 800px) { ... }
         este media query lo que hace es que cuando la pantalla alcance dimensiones 800px o menos se aplicarán los estilos indicados entre llaves
 
     Importante: para que coja las dimensiones reales del dispositivo hay que añadir el meta siguiente en el head de la página:
@@ -462,59 +462,38 @@ NOTAS DE WINDOWS
 * {
     font-family: 'Lobster', cursive;
     font-weight: 100;
+    font-size: 30px;
 }
 
-.nav {
-    background-color: darkslateblue;
-}
 
-.nav__li {
+div {
+    width: 45%;
     display: inline-block;
+    padding: 20px;
+    background: #ddd;
 }
 
-/* cuando pasamos el cursor por encima del li le damos un nuevo estilo al elemento a que incluya dentro del li */
-.nav__li:hover > a {
-    color: #bbb;
+h1 {
+    font-size: 24px;
 }
 
-.nav__li:hover > i {
-    color: #bbb;
+.caja2 {
+    background: #bbb;
 }
 
-.nav__responsive-ul {
-    display: none;
-    padding: 25px;
-    color: #fff;
-}
-
-.nav__li i {
-    color: #fff;
-    box-sizing: border-box;
-    text-align: right;
-    margin-right: 5px;
-}
-
-.nav__li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.nav__responsive-button {
-    float: right;
-    font-size: 25px;
-    padding: 6px 25px;
-}
-
-@media(max-width:500px) {
-
-    .nav__ul {
-        display: none;
-    }
-
-    .nav__responsive-ul {
-        display: block;
-        padding: 12px;
-        color: #fff;
-    }
+@media(max-width: 800px) {
     
+    div {
+        display: block;
+        width: 100%;        
+    }
+
+    h1 {
+        font-size: 1em !important; 
+    }
+
+    p {
+        font-size: .6em;
+    }
+
 }
