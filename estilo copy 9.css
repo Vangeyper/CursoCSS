@@ -425,28 +425,7 @@ TRANSITION:
         transition: all 1s;
 
 
-FLEX-BOX:
-    Una caja flexible o flexbox contiene 2 vectores o ejes orientados, uno en el eje de las X que va de izquierda a derecha: main axis, y otro que va de arriba abajo que llamamos cross axis. 
-    Al punto de inicio de ambos ejes lo llamamos: main-start y cross-start, mientras que el punto final lo llamamos main-end y cross-end
-    Por un lado tenemos un contenedor flex que contendrá flex-items. Que no son mas que elementos dentro de un contenedor flex.
-    Si tenemos otras cajas dentro de la flex box también serían flex-items, pero sus hijos o elementos ya no lo serían salvo que esas otras cajas también fueran flex boxes.
 
-    Si indicamos el display: flex; a un contenedor las cajas que lo contienen se pondrán una al lado de la otra, pero con la gracia que tendrán la misma altura. 
-    Si añadimos más contenido a una de las cajas, lo que hará será ajustar el contenido para mantener la altura de ambas cajas. Este es el comportamiento por defecto de las cajas flex-box.
-    OJO: si no le damos ninguna anchura, es decir que tienen anchura sin definir y no tienen contenido no las mostrará, aunque tengamos definido el height.
-
-    El contenido por defecto del vector para todos los elementos de dentro de la flex box está definido por:
-            flex-direction: row;   esto quiere decir que van en el sentido de las X: main-axis de izquierda a derecha 
-    Tenemos las opciones row, column, row-reverse y column-reverse
-    Si queremos que se desplieguen como una columna siguiendo el eje cross-axis:
-            flex-direction: column;
-    Para indicarle que no queremos que los elementos de dentro del contenedor flexible mantengan sus dimensiones pasando a la línea de abajo si no caben antes que adaptar su contenido lo indicamos:
-            flex-wrap: wrap;
-    Tenemos las opciones wrap, no-wrap y wrap-reverse
-    Como abreviación de las propiedades flex-direction y wrap podemos usar flex-flow:
-        flex-flow: flex-direction flex-wrap;  indicando los diferentes valores para ambas opciones
-
-    
 
 NOTA DE HTML
 
@@ -487,26 +466,109 @@ NOTAS DE WINDOWS
     font-weight: 100;
 }
 
-.flex-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+.nav {
+    background-color: #48e;
 }
 
-.flex-item {
-    background-color: #248;
+.nav__li {
+    display: inline-block;
+}
+
+/* cuando pasamos el cursor por encima del li le damos un nuevo estilo al elemento a que incluya dentro del li */
+.nav__li:hover > a {
+    color: #bbb;
+}
+
+.nav__li:hover > i {
+    color: #bbb;
+}
+
+.nav__responsive-ul {
+    display: none;
+    padding: 25px;
     color: #fff;
-    padding: 10px;
-    margin: 10px;
-    height: 120px;
-    min-width: 120px;
-    text-align: center;
 }
 
-.orange {
-    background: orange;
+.nav__li i {
+    color: #fff;
+    box-sizing: border-box;
+    text-align: right;
+    margin-right: 5px;
 }
 
-.green {
-    background: green;
+.nav__li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav__responsive-button-container {
+    position: absolute;
+    width: 100%;
+    font-size: 25px;
+    background-color: #69c;
+    margin-top: -64px;
+    z-index: 100;
+}
+
+.nav__responsive-button {
+    padding: 6px 35px;
+    text-align: right;
+    width: 100%;
+}
+
+@media(max-width:500px) {
+
+    .nav__ul {
+        display: none;
+    }
+
+    .nav {
+        height: 37px;
+        width: 100%;
+        background-color: #69c;   
+
+    }
+
+    .nav__responsive-ul {        
+        display: block;
+        position: absolute;
+        width: 100%;        
+        margin-top: 37px;
+        padding-top: 27px;
+        height: 27px;
+    }
+
+    .nav__li-container {
+        background: #9bf;
+        position: relative;
+        top: -1000px; 
+        height: calc(100vh - 64px);
+        transition: all 1s;
+        z-index: 1;
+        width: 75%;
+        padding-top: 27px;
+    }
+
+    .nav__responsive-li {
+        width: 100%;
+        padding: 9px 20px;
+    }
+
+    .nav__responsive-li i {
+        box-sizing: border-box;
+        text-align: center;
+        margin-right: 5px;
+        width: 30px;
+        color: #016;
+    }
+
+    .nav__responsive-li a {
+        color: #016;
+        text-decoration: none;
+    }
+
+    .nav__responsive-ul:hover > .nav__li-container {
+        top: -27px;
+    }
+    
 }
