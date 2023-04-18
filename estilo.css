@@ -436,17 +436,38 @@ FLEX-BOX:
     OJO: si no le damos ninguna anchura, es decir que tienen anchura sin definir y no tienen contenido no las mostrará, aunque tengamos definido el height.
 
     El contenido por defecto del vector para todos los elementos de dentro de la flex box está definido por:
-            flex-direction: row;   esto quiere decir que van en el sentido de las X: main-axis de izquierda a derecha 
-    Tenemos las opciones row, column, row-reverse y column-reverse
-    Si queremos que se desplieguen como una columna siguiendo el eje cross-axis:
+        flex-direction: row;   esto quiere decir que van en el sentido de las X: main-axis de izquierda a derecha 
+        Tenemos las opciones row, column, row-reverse y column-reverse
+        Si queremos que se desplieguen como una columna siguiendo el eje cross-axis:
             flex-direction: column;
     Para indicarle que no queremos que los elementos de dentro del contenedor flexible mantengan sus dimensiones pasando a la línea de abajo si no caben antes que adaptar su contenido lo indicamos:
-            flex-wrap: wrap;
-    Tenemos las opciones wrap, no-wrap y wrap-reverse
+        flex-wrap: wrap;
+        Tenemos las opciones wrap, no-wrap (sin efecto) y wrap-reverse (las cajas que saltan lo hacen hacia arriba, hacia la primera línea)
     Como abreviación de las propiedades flex-direction y wrap podemos usar flex-flow:
         flex-flow: flex-direction flex-wrap;  indicando los diferentes valores para ambas opciones
+    Tenemos la opción justify-content que nos permite centrar o alinear los flex-items que contiene la flex-box. 
+        Las opciones posibles son (solo afectan al main-axis):
+            center: las centra
+            space-arround: les da un margin: auto; a todas las cajas en el eje X        
+            space-between: separa el contenido a través del eje X dándole el mayor espacio entre cajas, para ocupar todo el eje X.
+            space-evenly: separa todas las cajas en el eje X pero asegurandose que todas las cajas tienen el mismo margen por todos lados, incluídas las de los costados que tendrán más margen por delante y por detrás según sea la primera o última caja.
+    Para alinear en el cross-axis tenemos las propiedades align-items (para solo una línea de flex-items) y align-content (se usa cuando hay más de una línea de flex-items): 
+        Las opciones posibles son (solo afectan al cross-axis):
+            flex-start: los pone alineados al principio del eje Y
+            center: se centra verticalmente
+            flex-end: los pone alineados al final del eje Y
+            stretch: es la propiedad por defecto. Estira la imágen todo el alto de la flex-box, a diferencia del resto de opciones que no la estiran
+            baseline: similar al flex-start y flex-end, su uso está indicado con la opción wrap-reverse, cuando queremos que la nueva línea de cajas que no caben vaya hacia arriba pero que la primera línea se mantenga en su sitio.
+        Si hacemos la pantalla más pequeña en resolución con la propiedad align-items y nos saltan las cajas a una nueva línea tendremos el problema que estas nuevas líneas se centran verticalmente, y aunque en ocasiones puede ser interesante no es el caso,
+        para evitar esto y que se alineen correctamente debemos usar align-content para que la opción afecte a todas las líneas.
 
+
+PROPIEDADES DE LOS FLEX-ITEMS:
     
+
+
+
+
 
 NOTA DE HTML
 
