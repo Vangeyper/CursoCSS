@@ -463,8 +463,16 @@ FLEX-BOX:
 
 
 PROPIEDADES DE LOS FLEX-ITEMS:
-    
-
+    align-self: permite alinear un flex-item en el eje cross-axis de manera independiente al resto de elementos.
+    margin: funciona de manera algo diferente al ser un flex-item el que lo aplica. Sobre todo el auto indica que aplique todo el margen posible al lado indicado, de tal forma que la caja se desplaza al lado o altura contraria a la indicada:
+            margin-top: auto;  desplaza la caja al fondo del cross-axis
+            margin-left: auto; desplaza la caja a la derecha del main-axis
+        De esta forma podemos ubicar una caja en los extremos/esquinas de la flex-box contenedora            
+        Si le damos el auto a dos lados o alturas opuestos se centra la caja por entrar en conflicto.
+        Esto indica que si le damos margin: auto; centramos la caja en el contenedor flex-box
+    flex-grow: reparte el espacio sobrante del contenedor entre los flex-items afectados en la proporción indicada, esto es como hacer cajas flexibles que se adaptan al ancho o alto del contenedor
+        Se indica un número que es igual que decir el número de partes iguales del espacio sobrante que se lleva, si solo repartimos en un flex-item este indicador se lo llevaría todo, si lo hacemos en 2 cada uno se lleva una parte, y si en alguno indicamos otro número se llevará tantas partes como indique. 
+        Es decir, se suman los numeros indicados en todos los flex-grow y se divide el espacio sobrante entre ese número para saber lo que supone una de esas partes, luego se aplica cada número de partes a cada flex-item segun lo indicado.
 
 
 
@@ -511,7 +519,9 @@ NOTAS DE WINDOWS
 .flex-container {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap:wrap;
+    justify-content: space-evenly;
+    height: 100vh;
 }
 
 .flex-item {
@@ -520,14 +530,17 @@ NOTAS DE WINDOWS
     padding: 10px;
     margin: 10px;
     height: 120px;
-    min-width: 120px;
+    width: 120px;
     text-align: center;
 }
 
 .orange {
     background: orange;
+    flex-grow: 1;
 }
 
 .green {
-    background: green;
+    background: black;
+    align-self: flex-end;    
+    flex-grow: 2;
 }
