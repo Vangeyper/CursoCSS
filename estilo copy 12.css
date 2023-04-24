@@ -497,60 +497,8 @@ GRID:
             No existen como tal al crear el Grid, las tenemos que definir nosotros si queremos que existan. No tiene sentido que ocupe solo una celda, debería estar formada por varias celdas.
         Grid line: son cada una de las líneas físicas que crear la rejilla y por lo tanto la dividen en celdas. Las hay de tipo row-line y tipo column-line. Tener en cuenta que la primera siempre es la que define el container.
 
+        
 
-PROPIEDADES DE LOS GRID-CONTAINER:
-    grid-template-rows: indica el número de columnas, se puede hacer de muchas maneras, por ejemplo dando el ancho de cada fila:
-            grid-template-rows: 150px 150px 150px;   define 3 filas de 150px
-    grid-template-columns: idem que template-rows pero para las columnas.
-    Unidades fr: 1 fr es una medida flexible que se adapta al movimiento del viewport, si le damos como medidas el fr se pillará todo el espacio disponible una vez asignado lo que tengan el resto de columnas o filas hasta completar el espacio disponible.
-    Para indicar una separación entre celdas podemos usar el grid-gap en sus diferentes modos:
-        grid-row-gap: separación entre filas de las celdas
-        grid-column-gap: separación entre columnas de las celdas
-        grid-gap: row column  -> método abreviado de filas y columnas para el gap
-    Con el gap no se aplica separación de los bordes del contenedor, solo se aplica separación entre filas y columnas.
-
-
-PROPIEDADES DE LOS GRID-ITEMS:
-    grid-column: 1/3; les está indicando a un elemento grid-item que en lugar de acabar en la columna 2 que sería lo normal desde la 1, lo haga en la 3, ocupando el especio de 2 columnas para ese elemento
-        esto es un short-hand y sería lo mismo que decir:
-            grid-column-start: 1;
-            grid-column-end: 3;
-
-    grid-row: 1/3; lo mismo que el anterior para las filas. También equivale a:
-        grid-row-start: 1;
-        grid-row-end: 3;
-
-    span número: indica el número de columnas o filas que queremos que ocupe desde el origen de la celda que ya tiene definido el elemento:
-        ej. grid-column: 1 / span 3;  sería como decirle grid-column: 1 / 4; ya que se va a pillas 3 columnas desde la 1
-    
-    repeat(repeticiones, medida): lo que hace es repetir tantas veces como indique (repeticiones) la medida indicada
-        ej.  grid-template-rows: 150px 150px 150px;
-             sería lo mismo que: repeat( 3, 150px );
-        podemos indicar mas de una medida, entonces sería como indicar que repita 2 o más rows:
-        ej. grid-template-rows: repeat( 3, 100px 150px ); repite 2 filas 3 veces, crea 6 filas
-
-
-GRID IMPLICITO Y EXPLICITO:
-    El explícito es elo definido por nosotros, mientras que el implícito es el que se crea al existir items que no caben en el grid explícito. Se suele dar cuando un item no cabe en el grid explícito. Tener en cuenta que sí que se dibuja y da lugar al grid implícito.
-
-
-PROPIEDADES DEL GRID IMPLICITO:
-    grid-auto-rows: igual que el grid-template-rows del grid explícito
-    grid-auto-columns: igual que el grid-template-columns del grid explícito
-    grid-auto-flow: indica la nueva expansión del grid si debe ser columna o fila
-        row: se añaden como filas nuevas
-        column: se añaden nuevas columnas
-        dense: se rellenan los huecos que puedan quedar en el medio del grid por definiciones de columnas y filas en el grid explícito
-
-
-GRID DINÁMICO: 
-    Por defecto cuando indicamos medidas se respeta siempre el tamaño de la palabra más grande, es decir que no la parte en 2 y la manda a la siguiente fila o línea dentro de una celda.
-    max-content: indica que la columna o fila tendrá el valor de lo que ocupa todo el item, el contenido de toda la línea si estamos hablando de una línea.
-    min-content: indica que la columna o fila tendrá el valor del valor mínimo del contenido: lo normal es la palabra más grande e indivisible
-    minmax(min, max): función que nos permite definir el mínimo y el máximo 
-    auto-fill: permite rellenar siempre que pueda con una nueva columna o fila cumpliendo las propiedades definidas.
-        ej. grid-template-columns: repeat(auto-fill, minmax(100px,1fr));  siempre que pueda meterá una nueva columna de 100px y mientras que no pueda pues estirará las columnas.
-    auto-fit: lo escala para ocupar todo el espacio
 
 
 NOTA DE HTML
@@ -593,31 +541,92 @@ NOTAS DE WINDOWS
 }
 
 body {
-    background: radial-gradient(circle, #fff, #bbb);    
+    background: #000;
+}
+
+.flex-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: #333;
+    margin: 50px 50px;
     padding: 20px;
 }
 
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(min-content, max-content)); 
-    grid-template-rows: repeat(3, minmax(min-content, max-content));
-    grid-auto-rows: 1fr;     
-    grid-auto-columns: 1fr;
-    border: 3px solid red;
-    background-color: #333;
-    grid-auto-flow: dense;
+.form {
+    min-width: 400px;
+    flex: 1;
+    text-align: center;
+    padding: 30px;
+    order: 5;
 }
 
-.grid-item {
-    border: 2px solid #000;
-    background-color: #999;
+.form__input {
+    width: 100%;
+    padding: 7px;
+    margin: 6px 0;
+    border: none;
+    border-bottom: 3px solid #1c7;
+    background: transparent;
+    color: white;
 }
 
-.grid-item:first-child {
-    background: red;
+.form__input:focus {
+    background: linear-gradient(to bottom, transparent, #222);
+    outline: none;
+    border-bottom: 3px solid #5dd;    
 }
 
-.grid-item:nth-child(2) {
-    /* seleccionamos el segundo hijo indicando el índice del elemento entre paréntesis */
-    background: yellow;
+.form textarea {
+    min-height: 140px;
+    resize: none;
+}
+
+.img {
+    flex: 1;    
+    padding: 10px;   
+    display: flex; 
+    min-width: 300px;
+    max-width: 500px;
+    order: 2;
+}
+
+.img div {
+    padding: 10px;     
+}
+
+.img-container {      
+    margin: auto;      
+}
+
+.img-container div {
+    background-color: #fff; 
+    border-radius: 50%; 
+    text-align: center;
+    padding: 20px;      
+}
+
+.img img {    
+    width: 40%;
+}
+
+.form input[type="submit"] {
+    background-color: #094;
+    border-bottom: none;
+    padding: 12px;
+}
+
+.form input[type="submit"]:hover {
+    background-color: #072;
+    border-bottom: none;
+    padding: 12px;
+}
+
+.form input[type="submit"]:focus {
+    background: #094;
+}
+
+.form input[type="submit"]:active {
+    background: linear-gradient(to bottom, #072, #050);
 }
