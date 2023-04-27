@@ -660,24 +660,8 @@ RESPONSIVE DESIGN:
 
 
 TRANSITIONS: 
-    Desglosar en frames o pasos el cambio desde un estado inicial a otro final
-    Para que exista una transition debemos disparar un evento como hover, ...
-    Tenemos el Short-hand transition.
-    Veamos algunas de las propiedades de forma individual:
-    En cualquier transición tenemos que informar las propiedades obligatorias para definirla:
-        transition-property: property/ies - all - none
-            La opción all no es recomendable porque consume muchos recursos
-        transition-duration: duration/s
-    Otras propiedades:
-        transition-delay: retrasa el cambio un tiempo antes de mostrar la transición al usuario. Es un retardo al inicio de la transición, no un cambio del tiempo de la transición, ni del cambio.
-        transition-timing-function: muestra o indica la función que representa la transición a lo largo del tiempo.
-            valores posibles son 
-                linear | ease | ease-in | ease-out | ease-in-out | step-start | step-end | steps(int, start|end) | initial | inherit
-
-
-ANIMACIONES:
-
-
+    
+        
 
 
 
@@ -716,9 +700,9 @@ NOTAS DE WINDOWS
 
 /*
 
-    ---------------------
-    A N I M A C I O N E S
-    ---------------------
+    ---------------------------------
+    E J E M P L O    C O N    G R I D
+    ---------------------------------
 
 */
 
@@ -727,50 +711,69 @@ NOTAS DE WINDOWS
     font-weight: 100;
 }
 
-.container {
-    background: #86f;
-    padding: 20px 5px;
+.content {
+    display: flex;
+    flex-direction: column;  
+    height: 100vh;  
 }
 
-.caja {
-    background: #025;
-    color: white;
-    height: 100px;
-    width: 100px;
-    transition-property: left, background, color;
-    transition-duration: 3s, 4s, 2s;
-    margin: 30px;
-    position: relative;
-    left: 0;
+.header, .footer, .main, .aside {
+    padding: 20px;
 }
 
-.container:hover > .caja {
-    left: 80%;
-    background: yellow;
-    color: black;
+.header {
+    background: lightblue;
+    flex-basis: 60px;
 }
 
-.caja:first-child {
-    transition-timing-function: linear;
+.main {
+    background: slateblue;
+    flex-basis: 300px;
+    flex-grow: 2;
+    flex-shrink: 0;
 }
 
-.caja:nth-child(2) {
-    transition-timing-function: ease;
+.aside {
+    background: darkslateblue;
+    flex-basis: 200px;
+    flex-grow: 1;
+    flex-shrink: 0;
 }
 
-.caja:nth-child(3) {
-    transition-timing-function: ease-in;
+.footer {
+    background: violet;
+    flex-grow: 1;
 }
 
-.caja:nth-child(4) {
-    transition-timing-function: ease-out;
+
+@media screen and (min-width: 700px) {
+    .content {
+        display: grid;
+        grid-template-rows: 80px 1fr 1fr 1fr 1fr 80px;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .main, .aside {
+        
+    }
+
+    .header {
+        grid-column: 1 / span 3;
+    }
+
+    .main {
+        grid-row: 2 / 6;
+        grid-column: 1 / span 2;
+    }
+
+    .aside {
+        grid-row: 2 / 6;
+    }
+
+    .footer {
+        grid-row: 6 / 7;
+        grid-column: 1 / span 3;
+    }
 }
 
-.caja:nth-child(5) {
-    transition-timing-function: ease-in-out;
-}
-
-.caja:last-child {
-    transition-timing-function: steps(5);
-}
 

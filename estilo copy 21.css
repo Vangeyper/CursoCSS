@@ -675,7 +675,6 @@ TRANSITIONS:
                 linear | ease | ease-in | ease-out | ease-in-out | step-start | step-end | steps(int, start|end) | initial | inherit
 
 
-ANIMACIONES:
 
 
 
@@ -717,7 +716,7 @@ NOTAS DE WINDOWS
 /*
 
     ---------------------
-    A N I M A C I O N E S
+    T R A N S I T I O N S
     ---------------------
 
 */

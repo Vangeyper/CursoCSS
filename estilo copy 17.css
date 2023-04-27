@@ -652,32 +652,6 @@ RESPONSIVE DESIGN:
                 screen: para las pantallas
                 speech: destinado a sintetizadores de voz
             Utiliza los operadores AND y OR para aplicar varias @Media
-    Hay 2 filosofias:
-        MOVIL_FIRST: se hace la web para movil y luego se va adaptando para otros dispositivos mayores: tablets y PC
-        DESKTOP_FIRST: la web se hace para un PC de escritorio y luego se va adaptando para dispositivos menores: tablet y movil
-        CONTENT_FIRST: no es responsive como tal, no importa el dispositivo, sino el contenido, una vez tenemos ese contenido se plantea estructurarlo.
-
-
-
-TRANSITIONS: 
-    Desglosar en frames o pasos el cambio desde un estado inicial a otro final
-    Para que exista una transition debemos disparar un evento como hover, ...
-    Tenemos el Short-hand transition.
-    Veamos algunas de las propiedades de forma individual:
-    En cualquier transición tenemos que informar las propiedades obligatorias para definirla:
-        transition-property: property/ies - all - none
-            La opción all no es recomendable porque consume muchos recursos
-        transition-duration: duration/s
-    Otras propiedades:
-        transition-delay: retrasa el cambio un tiempo antes de mostrar la transición al usuario. Es un retardo al inicio de la transición, no un cambio del tiempo de la transición, ni del cambio.
-        transition-timing-function: muestra o indica la función que representa la transición a lo largo del tiempo.
-            valores posibles son 
-                linear | ease | ease-in | ease-out | ease-in-out | step-start | step-end | steps(int, start|end) | initial | inherit
-
-
-ANIMACIONES:
-
-
 
 
 
@@ -714,63 +688,56 @@ NOTAS DE WINDOWS
 
 */
 
-/*
-
-    ---------------------
-    A N I M A C I O N E S
-    ---------------------
-
-*/
 
 * {
     font-family: 'Lobster', cursive;
     font-weight: 100;
 }
 
-.container {
-    background: #86f;
-    padding: 20px 5px;
+body {
+    background: radial-gradient(circle, #fff, #bbb);    
 }
 
-.caja {
-    background: #025;
-    color: white;
-    height: 100px;
-    width: 100px;
-    transition-property: left, background, color;
-    transition-duration: 3s, 4s, 2s;
-    margin: 30px;
-    position: relative;
-    left: 0;
+.grid-container {
+    background: #444;
+    margin: 10px;
+    display: grid;
+    grid-template-areas: 
+    "header header header"
+    "aside main main"
+    "aside main main"
+    "aside main main"
+    "aside main main"
+    "footer footer footer";
+    grid-template-rows: 100px repeat(4, 1fr) 100px;
+    height: 92vh;
+    border: 5px solid #000;
 }
 
-.container:hover > .caja {
-    left: 80%;
-    background: yellow;
-    color: black;
+ul li {
+    display: inline-block;
 }
 
-.caja:first-child {
-    transition-timing-function: linear;
+.grid-item {
+    padding: 20px;
 }
 
-.caja:nth-child(2) {
-    transition-timing-function: ease;
+.grid-footer {
+    background-color: #6f9;
+    grid-area: footer;
 }
 
-.caja:nth-child(3) {
-    transition-timing-function: ease-in;
+.grid-header {
+    background-color: #f96;    
+    grid-area: header;
 }
 
-.caja:nth-child(4) {
-    transition-timing-function: ease-out;
+.grid-aside {
+    background-color: #888;    
+    grid-area: aside;
 }
 
-.caja:nth-child(5) {
-    transition-timing-function: ease-in-out;
+.grid-main {
+    background-color: #96f;    
+    grid-area: main;
 }
-
-.caja:last-child {
-    transition-timing-function: steps(5);
-}
-
