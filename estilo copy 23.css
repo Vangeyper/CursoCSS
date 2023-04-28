@@ -758,76 +758,8 @@ TRANSFORM:
     Existen más transformaciones que podemos ver en la página https://www.w3schools.com/cssref/css3_pr_transform.asp
 
 
-BACKGROUND: 
-    background-color: indicamos el color de fondo de un elemento
-    background-image: url(); nos permite indicar una url de fondo
-    background-size: permite cambiar el tamaño de la imagen asignada en el background-image
-        Además de indicar tamaños en medida de las X e Y podemos dar las opciones:
-            cover: se ajusta para cubierta
-            contain: se ajusta para que toda la imagen quepa
-    background-repeat: repeat o no-repeat; indica si queremos que la imagen se repita en caso de caber otra o parte de ella. Por defecto es repeat
-    background-clip: permite indicar desde donde se empieza a mostrar la imagen
-        content-box, padding-box, border-box
-    background-origin: que es como la anterior pero no recorta la imagen al mostrarla mientras que el background-clip la recorta
-    background-position: permite especificar la posición del background en el eje X e Y
-        ej. background-position: left bottom;
-    background-attachment: fixed; permite que la imágen de fondo no se mueva con el contenedor al hacer scroll, en cambio con la opción scroll sí que toma como referencia el cotenedor y se mueve con él.
-        Con el fixed desaparece el elemento que tiene asignada la imagende background, pero hasta ese momento en que deja de verse la imagen permanece inalterada.
-        Tenemos también la opción inherit
-    
-
-VARIABLES EN CSS:
-    Existen variables globales y locales.
-    Las globales se declaran dentro del seleccionador :root
-    :roor {
-        --nombreVariable: valor; 
-    }
-    IMPORTANTE los 2 guiones delante del nombre.
-
-    Al ser global la podremos refenciar en cualquier parte del CSS
-
-    Si las declaramos en cualquier otro selector solo estará definidas y accesibles para los hijos del elemento que la he declarado y el mismo elemento.
-
-    La forma de acceder a su valor es mediante la función var(nombreVariable)
-    ej.
-        .container {
-            background: var(--nombreVariable);
-        }
-
-    Si volvemos a asignar un valor a la misma variable, prevalece el último, aunque sea de ámbito global y la otra local. Tener en cuenta que solo lo cambiará dentro del ámbito local en que la hallamos redefinido, en el resto de ubicaciones mantendrá el valor global.
 
 
-FILTER: 
-    Permite aplicar filtros a imágenes.
-    Podemos indicar varios filtros en el mismo filter y se aplicarán de forma consecutiva
-    filter: none;  no aplica ningún filtro.
-    filter: blur(10px); desenfoca la imagen 10px.
-    filter: brightness(0); ajusta el brillo del 0 al 1, donde 1 es el normal. Si ponemos valores por encima de 1 aumentamos el brillo más allá de lo normal, por ejemplo 2 sería el doble de lo normal.
-    filter: contrast(0); ajusta el contraste del 0 al 1. No hará nada si no se le da un color de fondo con el que contrastar
-    filter: drop-shadow(10px 10px 5px #000); establece una sombra
-    filter: grayscale(0); es color normal. Si le damos 1 pasamos todo a grises. También se le puede indicar un porcentaje
-    filter: hue-rotate(100deg); rota la gama de colores por grados
-    filter: invert(100%); invierte los colores en su totalidad, podemos llegar hasta 0
-    filter: opacity(1); indica la transparencia del objeto del 0 al 1
-    filter: saturate(400%); satura los colores un %. Se diferencia del contrast en que este lleva a cada color a su nivel de saturación indicado, mientras que el contrast mira porque los diferentes colores contrasten entre sí
-    filter: sepia(numero); lo pasa a colores sepia según el número indicado
-
-
-OTRAS PROPIEDADES, FUNCIONES Y SELECTORES CURIOSOS DE CSS:
-    direction: ltr; es la dirección por defecto, left to right
-    direction: rtl; cambia la dirección por completo de right to left. Es como un text-align right
-    letter-spacing: 10px; separa las letras 10 pixeles unas de otras
-    scroll-behavior: modela el comportamiento del scroll
-        scroll-behavior: smooth; suaviza haciendo el scroll paulatino y constante al mismo tiempo que visible.
-    Si no se indica nada el scroll es inmediato.
-    user-selected: none;  no permitimos al usuario seleccionar nada de la página
-    text-shadow: 2px 4px 15px color;  --> es para dar sombra al texto, siendo por orden los datos: desplazamiento para el lado, desplazamiento para abajo, difuminado y color 
-        En ambos sombreados si queremos darle más intensidad basta con copiarlo y repetirlo separado por comas
-
-
-SELECTORES: podemos ver multitud de formas de seleccionar, para ello tenemos la página: https://www.w3schools.com/cssref/css_selectors.asp
-    input:valid {...} selecciona los elementos que tienen un input por parte del usuario válido. Esto nos permite usarlo para poner en rojo lo que no lo son: un outline rojo
-    
 
 
 
@@ -866,27 +798,38 @@ NOTAS DE WINDOWS
 
 /*
 
-    ------------------------------------
-     O T R A S    P R O P I E D A D E S
-    ------------------------------------
+    -------------------
+     T R A N S F O R M
+    -------------------
 
 */
 
 * {
     font-family: 'Lobster', cursive;
     font-weight: 100;
-    scroll-behavior: smooth; /* le damos este comportamiento a todos los elementos porque el scroll afecta a todos */
 }
-
 
 .container {
-    padding: 20px;
-    background: #59f;
-    font-size: 20px;
-    direction: rtl;
-    letter-spacing: 10px;    
+    background: #86f;
+    padding: 20px 5px;
 }
 
-#content {
-    background: red;    
+.caja  {
+    background: #025;
+    color: white;
+    height: 100px;
+    width: 100px;
+    margin: 30px; 
+    display: flex;   
+    transition: 2s; 
+    clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+}
+
+.caja:hover {
+    transform: scaleX(2) translate(200px, 100px) skew(30deg) rotate(25deg);   
+}
+
+b {
+    margin: auto;
+    transform: skew(-30deg);
 }
