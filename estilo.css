@@ -829,6 +829,19 @@ SELECTORES: podemos ver multitud de formas de seleccionar, para ello tenemos la 
     input:valid {...} selecciona los elementos que tienen un input por parte del usuario válido. Esto nos permite usarlo para poner en rojo lo que no lo son: un outline rojo
     
 
+DIFERENTES NAVEGADORES:
+    Para aplicar un estilo solo a un tipo de navegador tenemos unos nombres o prefijos que indican el navegador:
+        -moz-color: aplicaría el color solo al navegador de mozilla Firefox
+        -webkit-color: haría lo mismo en Chrome, Safari, Android, iOs
+        -o-color: lo haría en Opera
+        -ms-color: lo haría en Internet Explorer
+        -khtml-color: lo haría en Konqueror
+    Evitar en lo posible el uso de prefijos.
+    Es recomendable tener actualizadas las librerías de javascript que utilicemos con la última versión, ya que solucionan problemas conocidos.
+    No usar detección de navegador en las páginas, usar mejor detección de característica soportada por el navegador
+    No utilizar plugins con edge
+    
+
 
 
 NOTA DE HTML
