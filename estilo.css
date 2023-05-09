@@ -531,7 +531,7 @@ PROPIEDADES DE LOS GRID-ITEMS:
 
 
 GRID IMPLICITO Y EXPLICITO:
-    El explícito es elo definido por nosotros, mientras que el implícito es el que se crea al existir items que no caben en el grid explícito. Se suele dar cuando un item no cabe en el grid explícito. Tener en cuenta que sí que se dibuja y da lugar al grid implícito.
+    El explícito es lo definido por nosotros, mientras que el implícito es el que se crea al existir items que no caben en el grid explícito. Se suele dar cuando un item no cabe en el grid explícito. Tener en cuenta que sí que se dibuja y da lugar al grid implícito.
 
 
 PROPIEDADES DEL GRID IMPLICITO:
@@ -779,7 +779,7 @@ BACKGROUND:
 VARIABLES EN CSS:
     Existen variables globales y locales.
     Las globales se declaran dentro del seleccionador :root
-    :roor {
+    :root {
         --nombreVariable: valor; 
     }
     IMPORTANTE los 2 guiones delante del nombre.
