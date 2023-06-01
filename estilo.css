@@ -458,8 +458,14 @@ FLEX-BOX:
             flex-end: los pone alineados al final del eje Y
             stretch: es la propiedad por defecto. Estira la imágen todo el alto de la flex-box, a diferencia del resto de opciones que no la estiran
             baseline: similar al flex-start y flex-end, su uso está indicado con la opción wrap-reverse, cuando queremos que la nueva línea de cajas que no caben vaya hacia arriba pero que la primera línea se mantenga en su sitio.
+                Si tenemos aplicada la opción baseline y desplazamos un elemento que quedaría a diferente altura del resto se mueven todos los elementos con él, siempre garantiza que todos empiezan a la misma altura en el eje cross-axis.
         Si hacemos la pantalla más pequeña en resolución con la propiedad align-items y nos saltan las cajas a una nueva línea tendremos el problema que estas nuevas líneas se centran verticalmente, y aunque en ocasiones puede ser interesante no es el caso,
         para evitar esto y que se alineen correctamente debemos usar align-content para que la opción afecte a todas las líneas.
+    En los últimos exploradores podemos aplicar la propiedad GAP que antes solo se aplicaba a Grid para dejar espacios entre los elementos de nuestro Flex-box:
+        Para indicar una separación entre celdas podemos usar el gap en sus diferentes modos:
+        gap: row column  -> método abreviado de filas y columnas para el gap -> no está probado si funciona en esta sintaxis
+        gap: todo -> aplica la separación tanto entre filas como entre columnas -> probado
+    Con el gap no se aplica separación de los bordes del contenedor, solo se aplica separación entre filas y columnas.
 
 
 PROPIEDADES DE LOS FLEX-ITEMS:
@@ -476,7 +482,8 @@ PROPIEDADES DE LOS FLEX-ITEMS:
         El espacio se empieza a repartir cuando todas las cajas tengan su medida, es a partir de ahí cuando empiezan a crecer repartiéndose el espacio.
         Si indicamos 0 no crecerá.
     flex-basis: es como el width pero referida a flex-items y tiene más importancia que cualquier width que afectase al elemento
-        Después de varias pruebas no parece que se comporte igual que un width, en algunos comportamientos no es lo mismo.
+        La diferencia principal con width es que no desborda el contenedor Flex, crece hasta donde lo permite el contenedor, mientras que con width si no cabe el elemento lo desbordaría.
+        Además al cambiar el ancho del contenedor los elementos permanecen dentro del mismo ajustándose. Por ejemplo al hacer mas pequeño el viewport también pasa.
     flex-shrink: establece que partes del espacio debe ceder en el momento que el viewport disminuya y provoque que no puedan mantener su espacio las cajas. Por defecto su valor es 1, pero si le doy un 2 a una caja flex-item, esa caja cederá el doble que el resto de cajas en su espacio, haciéndose más pequeña que el resto al hacer pequeño el viewport.
         Si le ponemos un 0 no cederá espacio manteniendo su ancho siempre que quepa en el contenedor flex.
     flex: short-hand que agrupa por este orden: flex-grow flex-shrink flex-basis. Siendo al menos el primer parámetro obligatorio.
